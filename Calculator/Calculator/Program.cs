@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Computation
@@ -18,8 +18,8 @@ namespace Computation
              Convert number-strings into floats then do computation using the inputted operator.
              This part of the code currently geared towards simplest computation (num-op-num). Still needs to
              be extended to handle longer computations. */
-            List<float> numbers = new List<float>;
-            char op;
+            List<float> numbers = new List<float> { };
+            char op = '!';
             foreach (string item in parts)
                 try
                 {
@@ -41,9 +41,16 @@ namespace Computation
                     }
                     
                 }
-
-            float ans = compute(numbers[0], numbers[1], op); //issue with op variable here
-            Console.WriteLine("Answer: " + ans);
+            
+            try
+            {
+                float ans = compute(numbers[0], numbers[1], op); //issue with op variable here
+                Console.WriteLine("Answer: " + ans);
+            }
+            catch
+            {
+                Console.WriteLine("Error in computing...");
+            }
                
         }
 
@@ -51,21 +58,26 @@ namespace Computation
         public static float compute(float num1, float num2, char op)
         {
             float ans = 0;
-            if (op.Equals("+"))
+            //Console.WriteLine("Your equation is: " + num1 + op + num2);
+            if (op.Equals('+'))
             {
                 ans = num1 + num2;
+                return ans;
             }
-            if (op.Equals("-"))
+            if (op.Equals('-'))
             {
                 ans = num1 - num2;
+                return ans;
             }
-            if (op.Equals("*"))
+            if (op.Equals('*'))
             {
                 ans = num1 * num2;
+                return ans;
             }
-            if (op.Equals("/"))
+            if (op.Equals('/'))
             {
                 ans = num1 / num2;
+                return ans;
             }
 
             return ans;
